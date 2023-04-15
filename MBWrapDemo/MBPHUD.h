@@ -77,26 +77,27 @@ typedef enum : NSUInteger {
 
 /*****************************************  展示Image + Text ***********************************************/
 
-/// 显示图片和文字 不能自动移除
-/// - Parameters:
-///   - image: 图片
-///   - text: 文字
-///   - view: 显示所在的View,nil默认会加到window上显示.
-///   - position: 位置信息
-///   - interactionEnable: 能否交互
-+ (MBProgressHUD *)showImage:(nullable NSArray<UIImage *> *)image
++ (MBProgressHUD *)showImage:(nullable UIImage *)image
+         withText:(nullable NSString *)text
+           toView:(nullable UIView *)view
+           interactionEnable:(BOOL)interactionEnable;
+
++ (MBProgressHUD *)showImage:(nullable UIImage *)image
                     withText:(nullable NSString *)text
                       toView:(nullable UIView *)view
                     position:(nullable MBPHUDPostion *)position
            interactionEnable:(BOOL)interactionEnable;
 
-//自动消失
-+ (void)showSucTxt:(nullable NSString *)text toView:(nullable UIView *)view;
-//自动消失
-+ (void)showErrTxt:(nullable NSString *)text toView:(nullable UIView *)view;
-//不会自动消失
-+ (void)showLoadingWithTxt:(nullable NSString *)text toView:(nullable UIView *)view actionEnable:(BOOL)actionEnable;
++ (MBProgressHUD *)showWithImageName:(nullable NSString *)imageName
+                     text:(nullable NSString *)text
+                   toView:(nullable UIView *)view
+                   interactionEnable:(BOOL)interactionEnable;
 
++ (MBProgressHUD *)showWithImageName:(nullable NSString *)imageName
+                     text:(nullable NSString *)text
+                   toView:(nullable UIView *)view
+                 position:(nullable MBPHUDPostion *)position
+                   interactionEnable:(BOOL)interactionEnable;
 
 /************************  展示CustomView + Text 不会自动消失 **********************/
 
@@ -118,5 +119,18 @@ typedef enum : NSUInteger {
                            toView:(nullable UIView *)view;
 
 @end
+
+
+@interface MBPHUD (Easy)
+
++ (void)showLoadingWithTxt:(nullable NSString *)text toView:(nullable UIView *)view actionEnable:(BOOL)actionEnable;
+
+//自动消失
++ (void)showSucTxt:(nullable NSString *)text toView:(nullable UIView *)view;
+//自动消失
++ (void)showErrTxt:(nullable NSString *)text toView:(nullable UIView *)view;
+
+@end
+
 
 NS_ASSUME_NONNULL_END

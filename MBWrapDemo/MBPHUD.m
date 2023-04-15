@@ -228,7 +228,7 @@ double const MBPHUDDefaultHideDelay = 1.5;
 /*****************************************  展示Image + Text ***********************************************/
 
 
-+ (MBProgressHUD *)showImage:(nullable NSArray<UIImage *> *)images
++ (MBProgressHUD *)showImages:(nullable NSArray<UIImage *> *)images
          withText:(nullable NSString *)text
            toView:(nullable UIView *)view
          position:(nullable MBPHUDPostion *)position
@@ -246,7 +246,7 @@ interactionEnable:(BOOL)interactionEnable
     if (images.count == 1) {
         imageView.image = images.firstObject;
     }
-    else { //多个是支持gif的
+    else { //多个是gif
         imageView.animationImages = images;
         imageView.animationDuration = 3; //需要优化
         [imageView startAnimating];
@@ -261,6 +261,53 @@ interactionEnable:(BOOL)interactionEnable
     return hud;
 }
 
+
++ (MBProgressHUD *)showWithImageName:(nullable NSString *)imageName
+                     text:(nullable NSString *)text
+                   toView:(nullable UIView *)view
+                 position:(nullable MBPHUDPostion *)position
+        interactionEnable:(BOOL)interactionEnable
+{
+    NSArray * images = nil;
+    if ([imageName hasSuffix:@".gif"]) {
+        NSURL *fileUrl = [[NSBundle mainBundle] URLForResource:imageName withExtension:nil];
+        CGImageSourceRef gifSource = CGImageSourceCreateWithURL((CFURLRef)fileUrl, NULL);
+        size_t frameCout=CGImageSourceGetCount(gifSource);
+        NSMutableArray* frames= [[NSMutableArray alloc] init];
+        for (size_t i=0; i < frameCout ; i++){
+            CGImageRef imageRef=CGImageSourceCreateImageAtIndex(gifSource, i, NULL);
+            UIImage* imageName=[UIImage imageWithCGImage:imageRef];
+            [frames addObject:imageName];
+            CGImageRelease(imageRef);
+        }
+        images = frames.copy;
+    }
+    else {
+        UIImage * image = [UIImage imageNamed:imageName];
+        images = @[image];
+    }
+    return [self showImages:images withText:text toView:view position:position interactionEnable:interactionEnable];
+}
+
++ (MBProgressHUD *)showWithImageName:(nullable NSString *)imageName
+                     text:(nullable NSString *)text
+                   toView:(nullable UIView *)view
+        interactionEnable:(BOOL)interactionEnable
+{
+    CGFloat centerYOffSet = view.frame.size.height * 0.5 * 0.2;
+    MBPHUDPostion * p = [MBPHUDPostion centerWithOffset:CGPointMake(0, centerYOffSet)];
+    return [self showWithImageName:imageName text:text toView:view position:p interactionEnable:interactionEnable];
+}
+
++ (MBProgressHUD *)showImage:(nullable UIImage *)image
+                    withText:(nullable NSString *)text
+                      toView:(nullable UIView *)view
+                    position:(nullable MBPHUDPostion *)position
+           interactionEnable:(BOOL)interactionEnable
+{
+    return [self showImages:@[image] withText:text toView:view position:position interactionEnable:interactionEnable];
+}
+
 //向上偏移0.1height
 + (MBProgressHUD *)showImage:(nullable UIImage *)image
          withText:(nullable NSString *)text
@@ -269,41 +316,7 @@ interactionEnable:(BOOL)interactionEnable
 {
     CGFloat centerYOffSet = view.frame.size.height * 0.5 * 0.2;
     MBPHUDPostion * p = [MBPHUDPostion centerWithOffset:CGPointMake(0, centerYOffSet)];
-    return [self showImage:@[image] withText:text toView:view position:p interactionEnable:interactionEnable];
-}
-
-//自动隐藏
-+ (void)showSucTxt:(nullable NSString *)text toView:(nullable UIView *)view {
-    double delayTime = [MBPHUDTool delayTimeAccordText:text];
-    UIImage * image = [UIImage imageNamed:@"your success image"];
-    MBProgressHUD * hud = [self showImage:image withText:text toView:view interactionEnable:true];
-    [hud hideAnimated:YES afterDelay:delayTime];
-}
-
-//自动隐藏
-+ (void)showErrTxt:(nullable NSString *)text toView:(nullable UIView *)view {
-    double delayTime = [MBPHUDTool delayTimeAccordText:text];
-    UIImage * image = [UIImage imageNamed:@"your error image"];
-    MBProgressHUD * hud = [self showImage:image withText:text toView:view interactionEnable:true];
-    [hud hideAnimated:YES afterDelay:delayTime];
-}
-
-//不会自动隐藏
-+ (void)showLoadingWithTxt:(nullable NSString *)text toView:(nullable UIView *)view actionEnable:(BOOL)actionEnable{
-    //your loading image
-    NSURL *fileUrl = [[NSBundle mainBundle] URLForResource:@"testGif" withExtension:@"gif"];
-    CGImageSourceRef gifSource = CGImageSourceCreateWithURL((CFURLRef)fileUrl, NULL);
-    size_t frameCout=CGImageSourceGetCount(gifSource);
-    NSMutableArray* frames= [[NSMutableArray alloc] init];
-    for (size_t i=0; i < frameCout ; i++){
-        CGImageRef imageRef=CGImageSourceCreateImageAtIndex(gifSource, i, NULL);
-        UIImage* imageName=[UIImage imageWithCGImage:imageRef];
-        [frames addObject:imageName];
-        CGImageRelease(imageRef);
-    }
-    CGFloat centerYOffSet = view.frame.size.height * 0.5 * 0.2;
-    MBPHUDPostion * p = [MBPHUDPostion centerWithOffset:CGPointMake(0, centerYOffSet)];
-    [self showImage:frames withText:text toView:view position:p interactionEnable:actionEnable];
+    return [self showImages:@[image] withText:text toView:view position:p interactionEnable:interactionEnable];
 }
 
 /*******************************  展示CustomView + Text ****************************/
@@ -338,5 +351,34 @@ interactionEnable:(BOOL)interactionEnable
     return [self showCustomView:customView withText:text toView:view position:p interactionEnable:false];
 }
 
+
+@end
+
+
+@implementation MBPHUD (Easy)
+
+
+//不会自动隐藏
++ (void)showLoadingWithTxt:(nullable NSString *)text toView:(nullable UIView *)view actionEnable:(BOOL)actionEnable{
+    CGFloat centerYOffSet = view.frame.size.height * 0.5 * 0.2;
+    MBPHUDPostion * p = [MBPHUDPostion centerWithOffset:CGPointMake(0, centerYOffSet)];
+    [self showWithImageName:@"testGif.gif" text:text toView:view position:p interactionEnable:actionEnable];
+}
+
+//自动隐藏
++ (void)showSucTxt:(nullable NSString *)text toView:(nullable UIView *)view {
+    double delayTime = [MBPHUDTool delayTimeAccordText:text];
+    UIImage * image = [UIImage imageNamed:@"your success image"];
+    MBProgressHUD * hud = [self showImage:image withText:text toView:view interactionEnable:true];
+    [hud hideAnimated:YES afterDelay:delayTime];
+}
+
+//自动隐藏
++ (void)showErrTxt:(nullable NSString *)text toView:(nullable UIView *)view {
+    double delayTime = [MBPHUDTool delayTimeAccordText:text];
+    UIImage * image = [UIImage imageNamed:@"your error image"];
+    MBProgressHUD * hud = [self showImage:image withText:text toView:view interactionEnable:true];
+    [hud hideAnimated:YES afterDelay:delayTime];
+}
 
 @end

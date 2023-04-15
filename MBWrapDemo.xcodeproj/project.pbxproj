@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E0AB4E029EA9FF90072AB53 /* MBProgressHUD+FY.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0AB4DF29EA9FF90072AB53 /* MBProgressHUD+FY.m */; };
 		139AD8B429E7F42D00D53F50 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 139AD8B329E7F42D00D53F50 /* AppDelegate.m */; };
 		139AD8B729E7F42D00D53F50 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 139AD8B629E7F42D00D53F50 /* SceneDelegate.m */; };
 		139AD8BD29E7F42D00D53F50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 139AD8BB29E7F42D00D53F50 /* Main.storyboard */; };
@@ -14,7 +15,6 @@
 		139AD8C229E7F42F00D53F50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 139AD8C029E7F42F00D53F50 /* LaunchScreen.storyboard */; };
 		139AD8C529E7F42F00D53F50 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 139AD8C429E7F42F00D53F50 /* main.m */; };
 		139AD8CD29E7F7E100D53F50 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139AD8CC29E7F7E100D53F50 /* TableViewController.m */; };
-		139AD8CF29E7FA2000D53F50 /* demoList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 139AD8CE29E7FA2000D53F50 /* demoList.plist */; };
 		139AD8D229E7FCAC00D53F50 /* MBPHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 139AD8D129E7FCAC00D53F50 /* MBPHUD.m */; };
 		139AD8D429E9379600D53F50 /* test56_54.png in Resources */ = {isa = PBXBuildFile; fileRef = 139AD8D329E9379600D53F50 /* test56_54.png */; };
 		139AD8D629E937A200D53F50 /* test275_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 139AD8D529E937A200D53F50 /* test275_128.png */; };
@@ -27,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E0AB4DE29EA9FF90072AB53 /* MBProgressHUD+FY.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+FY.h"; sourceTree = "<group>"; };
+		0E0AB4DF29EA9FF90072AB53 /* MBProgressHUD+FY.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+FY.m"; sourceTree = "<group>"; };
 		139AD8AF29E7F42D00D53F50 /* MBWrapDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MBWrapDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		139AD8B229E7F42D00D53F50 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		139AD8B329E7F42D00D53F50 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -39,7 +41,6 @@
 		139AD8C429E7F42F00D53F50 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		139AD8CB29E7F7E100D53F50 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		139AD8CC29E7F7E100D53F50 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
-		139AD8CE29E7FA2000D53F50 /* demoList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = demoList.plist; sourceTree = "<group>"; };
 		139AD8D029E7FCAC00D53F50 /* MBPHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBPHUD.h; sourceTree = "<group>"; };
 		139AD8D129E7FCAC00D53F50 /* MBPHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBPHUD.m; sourceTree = "<group>"; };
 		139AD8D329E9379600D53F50 /* test56_54.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test56_54.png; sourceTree = "<group>"; };
@@ -98,12 +99,13 @@
 				139AD8BE29E7F42F00D53F50 /* Assets.xcassets */,
 				139AD8C029E7F42F00D53F50 /* LaunchScreen.storyboard */,
 				139AD8C329E7F42F00D53F50 /* Info.plist */,
-				139AD8CE29E7FA2000D53F50 /* demoList.plist */,
 				139AD8C429E7F42F00D53F50 /* main.m */,
 				139AD8E229E9431700D53F50 /* LottieImages */,
 				139AD8E429E9431700D53F50 /* Resource */,
 				139AD8D029E7FCAC00D53F50 /* MBPHUD.h */,
 				139AD8D129E7FCAC00D53F50 /* MBPHUD.m */,
+				0E0AB4DE29EA9FF90072AB53 /* MBProgressHUD+FY.h */,
+				0E0AB4DF29EA9FF90072AB53 /* MBProgressHUD+FY.m */,
 				139AD8ED29E95AB300D53F50 /* testGif.gif */,
 				139AD8DA29E93C7600D53F50 /* MBPLottie.swift */,
 				139AD8D329E9379600D53F50 /* test56_54.png */,
@@ -211,7 +213,6 @@
 				139AD8E629E9431700D53F50 /* lottie_load_fly.png in Resources */,
 				139AD8C229E7F42F00D53F50 /* LaunchScreen.storyboard in Resources */,
 				139AD8EE29E95AB300D53F50 /* testGif.gif in Resources */,
-				139AD8CF29E7FA2000D53F50 /* demoList.plist in Resources */,
 				139AD8D829E93A9900D53F50 /* test750_288.png in Resources */,
 				139AD8D629E937A200D53F50 /* test275_128.png in Resources */,
 				139AD8BF29E7F42F00D53F50 /* Assets.xcassets in Resources */,
@@ -272,6 +273,7 @@
 				139AD8DB29E93C7600D53F50 /* MBPLottie.swift in Sources */,
 				139AD8D229E7FCAC00D53F50 /* MBPHUD.m in Sources */,
 				139AD8B429E7F42D00D53F50 /* AppDelegate.m in Sources */,
+				0E0AB4E029EA9FF90072AB53 /* MBProgressHUD+FY.m in Sources */,
 				139AD8C529E7F42F00D53F50 /* main.m in Sources */,
 				139AD8CD29E7F7E100D53F50 /* TableViewController.m in Sources */,
 				139AD8B729E7F42D00D53F50 /* SceneDelegate.m in Sources */,
